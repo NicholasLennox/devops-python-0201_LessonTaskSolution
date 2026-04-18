@@ -117,9 +117,7 @@ if __name__ == "__main__":
     app.run(port=5000, debug=True)
 ```
 
-The `debug` variable was read from the environment correctly earlier in the 
-file but never used. The `port` variable was never read from the environment 
-at all.
+Two things were wrong here. `port` was never read from the environment at all - the variable simply did not exist in the file. `debug` was read from the environment correctly earlier in the file, but was never passed to `app.run()`, meaning the environment value was silently ignored.
 
 **Why it is a problem:**
 Debug mode is always on regardless of what `.env` says, which is a security 
